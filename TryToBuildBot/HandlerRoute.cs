@@ -13,6 +13,7 @@ namespace TryToBuildBot
     {
 
         Message m;
+        bool flag = false;
         public override Route returnCurrentRoute()
         {
             return routeCurrent;
@@ -25,34 +26,58 @@ namespace TryToBuildBot
 
                 Console.WriteLine("Вернуться назад");
                 Console.WriteLine(r.Name);
-                if (r.Parent==null)
+                if (r.Parent != null)
                 {
-                    Console.WriteLine("ДААА");
+                    routeCurrent = r.Parent;
                 }
-                routeCurrent = r.Parent;
-                Console.WriteLine(routeCurrent.Name);
+                else
+                {
+                    flag = true;
+                    Console.WriteLine("tru");
+                }
+               
+
             }
             else
             {
-                routeCurrent = r.Children.Find(e => e.Name.Equals(message.Text));
-                if (routeCurrent==null)
+                if (routeCurrent.Children != null)
                 {
-                    routeCurrent = r;
+                    routeCurrent = r.Children.Find(e => e.Name.Equals(message.Text));
+                    if (routeCurrent == null)
+                    {
+                        routeCurrent = r;
+                    }
                 }
+                //else
+                //{
+                //    routeCurrent = r;
+                //}
+
 
             }
-           
+
             return new HandlerRoute();
         }
         public async override void SendMessage(TelegramBotClient Bot)
         {
+            if (routeCurrent.Children != null)
+            {
+                await Bot.SendTextMessageAsync(m.Chat.Id, "Выберите действие", false, false, 0, getKeyBoard());
+            }
            
-            await Bot.SendTextMessageAsync(m.Chat.Id, "Выберите действие", false, false, 0, getKeyBoard());
+            else
+            {
+                Final f = (Final)routeCurrent;
+                await Bot.SendPhotoAsync(m.Chat.Id, @"http://s1.cdnnz.net/p/i/2/9/4/okino.ua-181294-a.jpg", "", false, 0, getKeyBoard());
+            }
+
+
         }
         private ReplyKeyboardMarkup getKeyBoard()
         {
+
             var rkm = new ReplyKeyboardMarkup();
-            if (routeCurrent.Parent != null)
+            if (!flag&&/*routeCurrent.Parent != null &&*/ routeCurrent.Children != null)
             {
                 rkm.Keyboard = new KeyboardButton[routeCurrent.Children.Count + 1][];
                 for (int i = 0; i < routeCurrent.Children.Count; i++)
@@ -61,7 +86,12 @@ namespace TryToBuildBot
                 }
                 rkm.Keyboard[routeCurrent.Children.Count] = new KeyboardButton[] { new KeyboardButton("Вернуться назад") };
             }
-            else
+            else if (flag)
+            {
+                rkm.Keyboard = new KeyboardButton[1][];
+                rkm.Keyboard[0] = new KeyboardButton[] { new KeyboardButton("C ' 2 POSM & Placement") };
+            }
+           /* else if (routeCurrent.Parent == null)
             {
                 // rkm.Keyboard = new KeyboardButton[1][];
                 //rkm.Keyboard[0] = new KeyboardButton[] { new KeyboardButton("C ' 2 POSM & Placement") };
@@ -71,6 +101,11 @@ namespace TryToBuildBot
                     rkm.Keyboard[i] = new KeyboardButton[] { new KeyboardButton(routeCurrent.Children[i].Name) };
                 }
 
+            }*/
+            else
+            {
+                rkm.Keyboard = new KeyboardButton[1][];
+                rkm.Keyboard[0] = new KeyboardButton[] { new KeyboardButton("Вернуться назад") };
             }
             return rkm;
 
