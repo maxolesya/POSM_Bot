@@ -14,7 +14,7 @@ namespace TryToBuildBot
 {
     class PosmBot
     {
-        public static Telegram.Bot.TelegramBotClient Bot;
+        public  Telegram.Bot.TelegramBotClient Bot;
         public event Action<Message> OnMessageReceived;
         public event Action<string> LogMessage;
         private readonly string _token = "349066899:AAFiqkKRiwbO8Rgc1bLdANgLqWpbiJvfK3U";

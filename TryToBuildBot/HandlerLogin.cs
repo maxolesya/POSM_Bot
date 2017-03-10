@@ -10,16 +10,18 @@ namespace TryToBuildBot
 {
     class HandlerLogin : Handler
     {
-        bool flag = false;
-
+        public bool flag = false;
+        public Message m;
         public override Handler ProccessMessage(Message message)
         {
+            m = message;
+            flag = true;
             
-            return base.ProccessMessage(message);
+            return new HandlerPassword(this);
         }
-        public override void SendMessage(TelegramBotClient Bot)
+        public async override void SendMessage(TelegramBotClient Bot)
         {
-            base.SendMessage(Bot);
+            await Bot.SendTextMessageAsync(m.Chat.Id, "Введите пароль", false, false, 0);
         }
        
     }
