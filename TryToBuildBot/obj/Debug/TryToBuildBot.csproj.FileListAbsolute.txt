@@ -1,0 +1,12 @@
+C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\bin\Debug\TryToBuildBot.exe.config
+C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\bin\Debug\TryToBuildBot.exe
+C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\bin\Debug\TryToBuildBot.pdb
+C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\bin\Debug\Newtonsoft.Json.dll
+C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\bin\Debug\System.Net.Http.Formatting.dll
+C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\bin\Debug\Telegram.Bot.dll
+C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\bin\Debug\Newtonsoft.Json.xml
+C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\bin\Debug\System.Net.Http.Formatting.xml
+C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\bin\Debug\Telegram.Bot.xml
+C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\obj\Debug\TryToBuildBot.csprojResolveAssemblyReference.cache
+C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\obj\Debug\TryToBuildBot.exe
+C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\obj\Debug\TryToBuildBot.pdb
