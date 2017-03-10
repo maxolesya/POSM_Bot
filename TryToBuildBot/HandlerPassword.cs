@@ -39,7 +39,7 @@ namespace TryToBuildBot
 
 
         }
-        public override Handler ProccessMessage(Message message)
+        public override Handler ProccessMessage(Message message,Route r)
         {
             m = message;
             if (message.Text == "12345" && h.m.Text == "olesya")

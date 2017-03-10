@@ -87,38 +87,25 @@ namespace TryToBuildBot
                 try
                 {
                     ChatInfo chatInfo = chatDictionary[message.Chat.Id];
-                    Handler h = handler.ProccessMessage(message);
+                   
+                    Handler h = handler.ProccessMessage(message, chatDictionary[message.Chat.Id].CurrentNode);
+                    Console.WriteLine(r.Name);
                     handler.SendMessage(client.Bot);
+                    chatDictionary[message.Chat.Id].CurrentNode = handler.returnCurrentRoute();
                     handler = h;
-                    Console.WriteLine("+");
                 }
                 catch (Exception e)
                 {
 
                     Console.WriteLine(e.StackTrace);
                 }
-
-                /*var rkm = new ReplyKeyboardMarkup();
-
-                rkm.Keyboard =
-                    new KeyboardButton[][]
-                    {
-                      new KeyboardButton[]
-                      {
-                         new KeyboardButton("C ' 2 POSM & Placement"),
-                      }
-                    };
-
-                await PosmBot.Bot.SendTextMessageAsync(message.Chat.Id, "Выберите действие", false, false, 0, rkm);*/
-
             }
             else
             {
                 handler = new HandlerLogin();
-                chatDictionary.Add(message.Chat.Id, new ChatInfo() { ChatId = message.Chat.Id, CurrentNode = "C ' 2 POSM & Placement", Login = false, Password = false });
+                chatDictionary.Add(message.Chat.Id, new ChatInfo() { ChatId = message.Chat.Id, CurrentNode = r, Login = false, Password = false });
                 await client.Bot.SendTextMessageAsync(message.Chat.Id, BotAnswers.InfoMessage(), false, false, 0);
                 await client.Bot.SendTextMessageAsync(message.Chat.Id, "Введите логин", false, false, 0);
-
             }
 
 

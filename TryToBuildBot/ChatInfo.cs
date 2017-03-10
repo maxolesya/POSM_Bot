@@ -11,6 +11,6 @@ namespace TryToBuildBot
         public long ChatId { get; set; }
         public bool Login { get; set; }
         public bool Password { get; set; }
-        public string CurrentNode { get; set; }
+        public Route CurrentNode { get; set; }
     }
 }

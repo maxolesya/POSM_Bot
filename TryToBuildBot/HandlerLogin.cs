@@ -12,7 +12,7 @@ namespace TryToBuildBot
     {
         public bool flag = false;
         public Message m;
-        public override Handler ProccessMessage(Message message)
+        public override Handler ProccessMessage(Message message, Route r)
         {
             m = message;
             flag = true;

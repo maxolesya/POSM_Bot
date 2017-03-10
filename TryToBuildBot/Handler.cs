@@ -9,7 +9,8 @@ namespace TryToBuildBot
 {
     class Handler
     {
-        public virtual Handler ProccessMessage (Message message)
+        protected Route routeCurrent;
+        public virtual Handler ProccessMessage (Message message, Route r)
         {
             return null;
         }
@@ -17,5 +18,76 @@ namespace TryToBuildBot
         {
            
         }
+        public virtual void ProccessCurrentRoute(Route r)
+        {
+
+        }
+        public virtual Route returnCurrentRoute()
+        {
+            return routeCurrent;
+        }
+        public Handler()
+        {
+            Trash();
+        }
+        private void Trash()
+        {
+            Middle C2PosmAndPlacement = new Middle(null, null, "C ' 2 POSM & Placement");
+            Middle BWD = new Middle(C2PosmAndPlacement, null, "BWD оборудование");
+            Middle RKA = new Middle(C2PosmAndPlacement, null, "RKA");
+            Middle RRKA = new Middle(RKA, null, "RRKA");
+            Final Space = new Final("Простор", "stark.png", RRKA);
+            Middle NRKA = new Middle(RKA, null, "NRKA");
+            Middle Vict = new Middle(NRKA, null, "Дикси/Виктория");
+            Final JUDO = new Final("JUDO", "stark.png", Vict);
+            Final OLD_OHD = new Final("OLD OHD", "stark.png", Vict);
+            Final OHD = new Final("OHD оборудование", "stark.png", C2PosmAndPlacement);
+            Final MasterPlano = new Final("Master Plano", "stark.png", C2PosmAndPlacement);
+            Middle Prem_Black_11x15 = new Middle(BWD, null, "Premium Black 11x15 SS");
+            Middle Prem_Black_11x12 = new Middle(BWD, null, "Premium Black 11x12 SS");
+            Middle A2SS = new Middle(BWD, null, "A2 SS/Non SS");
+            Middle Prem_Grey_9x15 = new Middle(BWD, null, "Premium Grey 9x15");
+            Middle Prem_Grey_9x12 = new Middle(BWD, null, "Premium Grey 9x12");
+            Middle DoorSlim_12x15 = new Middle(BWD, null, "Door Slim 12x15 SS");
+            Middle DoorSlim_12x12 = new Middle(BWD, null, "Door Slim 12x12 SS");
+            Middle Flap_11x15 = new Middle(BWD, null, "Flap 11x15 SS");
+            Middle Flap_11x12 = new Middle(BWD, null, "Flap 11x15 SS");
+            Final VFM_ROW_Prem_Black_11x15 = new Final("VFM-", "stark.png", Prem_Black_11x15);
+            Final VFM_ROW_Prem_Black_11x12 = new Final("VFM-", "stark.png", Prem_Black_11x12);
+            Final VFM_ROW_A2SS = new Final("VFM-", "stark.png", A2SS);
+            Final VFM_ROW_Prem_Grey_9x12 = new Final("VFM-", "stark.png", Prem_Grey_9x12);
+            Final VFM_ROW_Prem_Grey_15 = new Final("VFM-", "stark.png", Prem_Grey_9x15);
+            Final VFM_ROW_DoorSlim_12x15 = new Final("VFM-", "stark.png", DoorSlim_12x15);
+            Final VFM_ROW_DoorSlim_12x12 = new Final("VFM-", "stark.png", DoorSlim_12x12);
+            Final VFM_ROW_Flap_11x15 = new Final("VFM-", "stark.png", Flap_11x15);
+            Final VFM_ROW_Flap_11x12 = new Final("VFM-", "stark.png", Flap_11x12);
+            Final AP_Prem_Black_11x15 = new Final("AP+", "stark.png", Prem_Black_11x15);
+            Final AP_Prem_Black_11x12 = new Final("AP+", "stark.png", Prem_Black_11x12);
+            Final AP_A2SS = new Final("AP+", "stark.png", A2SS);
+            Final AP_Prem_Grey_9x12 = new Final("AP+", "stark.png", Prem_Grey_9x12);
+            Final AP_Prem_Grey_9x15 = new Final("AP+", "stark.png", Prem_Grey_9x15);
+            Final AP_DoorSlim15 = new Final("AP+", "stark.png", DoorSlim_12x15);
+            Final AP_DoorSlim12 = new Final("AP+", "stark.png", DoorSlim_12x12);
+            Final AP_Flap15 = new Final("AP+", "stark.png", Flap_11x15);
+            Final AP_Flap12 = new Final("AP+", "stark.png", Flap_11x12);
+            C2PosmAndPlacement.Children = new List<Route>() { BWD, MasterPlano, OHD, RKA };
+            RKA.Children = new List<Route>() { NRKA, RRKA };
+            NRKA.Children = new List<Route>() { Vict };
+            Vict.Children = new List<Route>() { JUDO, OLD_OHD };
+            RRKA.Children = new List<Route>() { Space };
+            Prem_Black_11x15.Children = new List<Route>() { AP_Prem_Black_11x15, VFM_ROW_Prem_Black_11x15 };
+            BWD.Children = new List<Route>() { Prem_Black_11x15, Prem_Black_11x12, A2SS, Prem_Grey_9x12, Prem_Grey_9x15, DoorSlim_12x12, DoorSlim_12x15, Flap_11x12, Flap_11x15 };
+            Prem_Black_11x12.Children = new List<Route>() { VFM_ROW_Prem_Black_11x12, AP_Prem_Black_11x12 };
+            A2SS.Children = new List<Route>() { VFM_ROW_A2SS, AP_A2SS };
+            Prem_Grey_9x15.Children = new List<Route>() { AP_Prem_Grey_9x15, VFM_ROW_Prem_Grey_15 };
+            Prem_Grey_9x12.Children = new List<Route>() { AP_Prem_Grey_9x12, VFM_ROW_Prem_Grey_9x12 };
+            DoorSlim_12x15.Children = new List<Route>() { AP_DoorSlim15, VFM_ROW_DoorSlim_12x15 };
+            DoorSlim_12x12.Children = new List<Route>() { AP_DoorSlim12, VFM_ROW_DoorSlim_12x12 };
+            Flap_11x12.Children = new List<Route>() { AP_Flap12, VFM_ROW_Flap_11x12 };
+            Flap_11x15.Children = new List<Route>() { AP_Flap15, VFM_ROW_Flap_11x15 };
+            Console.WriteLine("Тут все ок");
+            routeCurrent = C2PosmAndPlacement;
+        }
+
     }
 }
