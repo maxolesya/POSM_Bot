@@ -41,7 +41,12 @@ namespace TryToBuildBot
             Middle Flap_11x12 = new Middle(BWD, null, "Flap 11x15 SS");
             Final VFM_ROW_Prem_Black_11x15 = new Final("VFM-", "stark.png", Prem_Black_11x15);
             Final VFM_ROW_Prem_Black_11x12 = new Final("VFM-", "stark.png", Prem_Black_11x12);
-            Final VFM_ROW_A2SS = new Final("VFM-", "stark.png", A2SS);
+            Middle SS = new Middle(A2SS, null, "SS");
+            Middle NONSS = new Middle(A2SS, null, "Non SS");
+            Final AP_SS = new Final("AP+", "stark.png", SS);
+            Final VFM_SS = new Final("VFM-", "stark.png", SS);
+            Final AP_NONSS = new Final("AP+", "stark.png", NONSS);
+            Final VFM_NON = new Final("VFM-", "stark.png", NONSS);
             Final VFM_ROW_Prem_Grey_9x12 = new Final("VFM-", "stark.png", Prem_Grey_9x12);
             Final VFM_ROW_Prem_Grey_15 = new Final("VFM-", "stark.png", Prem_Grey_9x15);
             Final VFM_ROW_DoorSlim_12x15 = new Final("VFM-", "stark.png", DoorSlim_12x15);
@@ -50,7 +55,7 @@ namespace TryToBuildBot
             Final VFM_ROW_Flap_11x12 = new Final("VFM-", "stark.png", Flap_11x12);
             Final AP_Prem_Black_11x15 = new Final("AP+", "stark.png", Prem_Black_11x15);
             Final AP_Prem_Black_11x12 = new Final("AP+", "stark.png", Prem_Black_11x12);
-            Final AP_A2SS = new Final("AP+", "stark.png", A2SS);
+           
             Final AP_Prem_Grey_9x12 = new Final("AP+", "stark.png", Prem_Grey_9x12);
             Final AP_Prem_Grey_9x15 = new Final("AP+", "stark.png", Prem_Grey_9x15);
             Final AP_DoorSlim15 = new Final("AP+", "stark.png", DoorSlim_12x15);
@@ -65,7 +70,9 @@ namespace TryToBuildBot
             Prem_Black_11x15.Children = new List<Route>() { AP_Prem_Black_11x15, VFM_ROW_Prem_Black_11x15 };
             BWD.Children = new List<Route>() { Prem_Black_11x15, Prem_Black_11x12, A2SS, Prem_Grey_9x12, Prem_Grey_9x15, DoorSlim_12x12, DoorSlim_12x15, Flap_11x12, Flap_11x15 };
             Prem_Black_11x12.Children = new List<Route>() { VFM_ROW_Prem_Black_11x12, AP_Prem_Black_11x12 };
-            A2SS.Children = new List<Route>() { VFM_ROW_A2SS, AP_A2SS };
+            A2SS.Children = new List<Route>() { SS,NONSS };
+            SS.Children = new List<Route>() { AP_SS,VFM_SS};
+            NONSS.Children = new List<Route>() { AP_NONSS,VFM_NON };
             Prem_Grey_9x15.Children = new List<Route>() { AP_Prem_Grey_9x15, VFM_ROW_Prem_Grey_15 };
             Prem_Grey_9x12.Children = new List<Route>() { AP_Prem_Grey_9x12, VFM_ROW_Prem_Grey_9x12 };
             DoorSlim_12x15.Children = new List<Route>() { AP_DoorSlim15, VFM_ROW_DoorSlim_12x15 };
@@ -84,20 +91,20 @@ namespace TryToBuildBot
 
             if (chatDictionary.ContainsKey(message.Chat.Id))
             {
-                //try
-                //{
+                try
+                {
                     ChatInfo chatInfo = chatDictionary[message.Chat.Id];
                    
                     Handler h = handler.ProccessMessage(message, chatDictionary[message.Chat.Id].CurrentNode);
                     handler.SendMessage(client.Bot);
                     chatDictionary[message.Chat.Id].CurrentNode = handler.returnCurrentRoute();
                     handler = h;
-                //}
-                //catch (Exception e)
-                //{
-                //
-                    //Console.WriteLine(e.Message);
-                //}
+                }
+                catch (Exception e)
+                {
+                
+                    Console.WriteLine(e.Message);
+                }
             }
             else
             {

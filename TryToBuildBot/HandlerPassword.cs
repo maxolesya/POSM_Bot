@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Telegram.Bot;
@@ -44,36 +45,45 @@ namespace TryToBuildBot
         { m = message;
             using (Context c = new Context())
             {
+                
                 Console.WriteLine(  c.Users.Count() );
-                User user = c.Users.Where(u => u.Login == h.m.Text).First();
-                if (user.Password == message.Text)
+                User user = c.Users.FirstOrDefault(u => u.Login == h.m.Text);
+                if (user == null || string.IsNullOrEmpty(message.Text) || getMd5Hash( message.Text) != user.Password)
+                {
+                    return new HandlerLogin();
+                }
+                else
                 {
                     flag = true;
                     return new HandlerRoute();
                 }
-                else
-                {
-                    return new HandlerLogin();
-                }
             }
-           
-
-           /* if (message.Text == "12345" && h.m.Text == "olesya")
-            {
-                flag = true;
-                return new HandlerRoute();
-            }
-            else
-            {
-                return new HandlerLogin();
-            }*/
-
-
         }
         public HandlerPassword(HandlerLogin hl)
         {
             h = hl;
         }
+        public static string getMd5Hash(string input)
+        {
+            // Create a new instance of the MD5CryptoServiceProvider object.
+            MD5 md5Hasher = MD5.Create();
 
+            // Convert the input string to a byte array and compute the hash.
+            byte[] data = md5Hasher.ComputeHash(Encoding.Default.GetBytes(input));
+
+            // Create a new Stringbuilder to collect the bytes
+            // and create a string.
+            StringBuilder sBuilder = new StringBuilder();
+
+            // Loop through each byte of the hashed data 
+            // and format each one as a hexadecimal string.
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+
+            // Return the hexadecimal string.
+            return sBuilder.ToString();
+        }
     }
 }

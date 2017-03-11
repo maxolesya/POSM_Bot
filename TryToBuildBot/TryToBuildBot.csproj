@@ -90,6 +90,15 @@
     <Compile Include="HandlerPassword.cs" />
     <Compile Include="HandlerRoute.cs" />
     <Compile Include="Middle.cs" />
+    <Compile Include="Migrations\201703111410079_InitialCreate.cs" />
+    <Compile Include="Migrations\201703111410079_InitialCreate.Designer.cs">
+      <DependentUpon>201703111410079_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703111412393_db.cs" />
+    <Compile Include="Migrations\201703111412393_db.Designer.cs">
+      <DependentUpon>201703111412393_db.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PosmBot.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -113,6 +122,14 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201703111410079_InitialCreate.resx">
+      <DependentUpon>201703111410079_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703111412393_db.resx">
+      <DependentUpon>201703111412393_db.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Web.WebJobs.Publish.1.0.7\tools\webjobs.targets" Condition="Exists('..\packages\Microsoft.Web.WebJobs.Publish.1.0.7\tools\webjobs.targets')" />

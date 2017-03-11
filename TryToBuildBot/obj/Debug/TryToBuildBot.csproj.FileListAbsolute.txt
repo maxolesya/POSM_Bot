@@ -14,3 +14,6 @@ C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\bin\Debug\EntityFramewor
 C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\bin\Debug\EntityFramework.SqlServer.dll
 C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\bin\Debug\EntityFramework.xml
 C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\bin\Debug\EntityFramework.SqlServer.xml
+C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\obj\Debug\TryToBuildBot.Migrations.InitialCreate.resources
+C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\obj\Debug\TryToBuildBot.csproj.GenerateResource.Cache
+C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\obj\Debug\TryToBuildBot.Migrations.db.resources

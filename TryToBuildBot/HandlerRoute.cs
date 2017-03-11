@@ -35,7 +35,7 @@ namespace TryToBuildBot
                     flag = true;
                     Console.WriteLine("tru");
                 }
-               
+
 
             }
             else
@@ -58,11 +58,15 @@ namespace TryToBuildBot
             {
                 await Bot.SendTextMessageAsync(m.Chat.Id, "Выберите действие", false, false, 0, getKeyBoard());
             }
-           
+
             else
             {
                 Final f = (Final)routeCurrent;
-                await Bot.SendPhotoAsync(m.Chat.Id, @"http://s1.cdnnz.net/p/i/2/9/4/okino.ua-181294-a.jpg", "", false, 0, getKeyBoard());
+                for (int i = 0; i < 2; i++)
+                {
+                    await Bot.SendPhotoAsync(m.Chat.Id, @"http://www.weather7forecast.com/TI/rc-4-17739.jpg", "", false, 0, getKeyBoard());
+
+                }
             }
 
 
@@ -71,7 +75,7 @@ namespace TryToBuildBot
         {
 
             var rkm = new ReplyKeyboardMarkup();
-            if (!flag&&/*routeCurrent.Parent != null &&*/ routeCurrent.Children != null)
+            if (!flag &&/*routeCurrent.Parent != null &&*/ routeCurrent.Children != null)
             {
                 rkm.Keyboard = new KeyboardButton[routeCurrent.Children.Count + 1][];
                 for (int i = 0; i < routeCurrent.Children.Count; i++)
@@ -85,7 +89,7 @@ namespace TryToBuildBot
                 rkm.Keyboard = new KeyboardButton[1][];
                 rkm.Keyboard[0] = new KeyboardButton[] { new KeyboardButton("C ' 2 POSM & Placement") };
             }
-           
+
             else
             {
                 rkm.Keyboard = new KeyboardButton[1][];

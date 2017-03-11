@@ -12,8 +12,6 @@ namespace TryToBuildBot
         public DbSet<User> Users { get; set; }
         public Context():base("localsql")
         {
-            var ensureDLLIsCopied =
-              System.Data.Entity.SqlServer.SqlProviderServices.Instance;
         }
     }
 }
