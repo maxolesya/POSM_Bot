@@ -48,12 +48,6 @@ namespace TryToBuildBot
                         routeCurrent = r;
                     }
                 }
-                //else
-                //{
-                //    routeCurrent = r;
-                //}
-
-
             }
 
             return new HandlerRoute();
@@ -91,17 +85,7 @@ namespace TryToBuildBot
                 rkm.Keyboard = new KeyboardButton[1][];
                 rkm.Keyboard[0] = new KeyboardButton[] { new KeyboardButton("C ' 2 POSM & Placement") };
             }
-           /* else if (routeCurrent.Parent == null)
-            {
-                // rkm.Keyboard = new KeyboardButton[1][];
-                //rkm.Keyboard[0] = new KeyboardButton[] { new KeyboardButton("C ' 2 POSM & Placement") };
-                rkm.Keyboard = new KeyboardButton[routeCurrent.Children.Count][];
-                for (int i = 0; i < routeCurrent.Children.Count; i++)
-                {
-                    rkm.Keyboard[i] = new KeyboardButton[] { new KeyboardButton(routeCurrent.Children[i].Name) };
-                }
-
-            }*/
+           
             else
             {
                 rkm.Keyboard = new KeyboardButton[1][];

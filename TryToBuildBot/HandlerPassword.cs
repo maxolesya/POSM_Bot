@@ -13,6 +13,7 @@ namespace TryToBuildBot
     {
 
         public bool flag = false;
+     
         HandlerLogin h;
         Message m;
         public async override void SendMessage(TelegramBotClient Bot)
@@ -39,10 +40,25 @@ namespace TryToBuildBot
 
 
         }
-        public override Handler ProccessMessage(Message message,Route r)
-        {
-            m = message;
-            if (message.Text == "12345" && h.m.Text == "olesya")
+        public override Handler ProccessMessage(Message message, Route r)
+        { m = message;
+            using (Context c = new Context())
+            {
+                Console.WriteLine(  c.Users.Count() );
+                User user = c.Users.Where(u => u.Login == h.m.Text).First();
+                if (user.Password == message.Text)
+                {
+                    flag = true;
+                    return new HandlerRoute();
+                }
+                else
+                {
+                    return new HandlerLogin();
+                }
+            }
+           
+
+           /* if (message.Text == "12345" && h.m.Text == "olesya")
             {
                 flag = true;
                 return new HandlerRoute();
@@ -50,7 +66,7 @@ namespace TryToBuildBot
             else
             {
                 return new HandlerLogin();
-            }
+            }*/
 
 
         }

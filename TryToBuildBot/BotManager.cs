@@ -84,21 +84,20 @@ namespace TryToBuildBot
 
             if (chatDictionary.ContainsKey(message.Chat.Id))
             {
-                try
-                {
+                //try
+                //{
                     ChatInfo chatInfo = chatDictionary[message.Chat.Id];
                    
                     Handler h = handler.ProccessMessage(message, chatDictionary[message.Chat.Id].CurrentNode);
-                    Console.WriteLine(r.Name);
                     handler.SendMessage(client.Bot);
                     chatDictionary[message.Chat.Id].CurrentNode = handler.returnCurrentRoute();
                     handler = h;
-                }
-                catch (Exception e)
-                {
-
-                    Console.WriteLine(e.StackTrace);
-                }
+                //}
+                //catch (Exception e)
+                //{
+                //
+                    //Console.WriteLine(e.Message);
+                //}
             }
             else
             {

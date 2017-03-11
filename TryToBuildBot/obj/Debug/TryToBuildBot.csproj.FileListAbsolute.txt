@@ -10,3 +10,7 @@ C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\bin\Debug\Telegram.Bot.x
 C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\obj\Debug\TryToBuildBot.csprojResolveAssemblyReference.cache
 C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\obj\Debug\TryToBuildBot.exe
 C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\obj\Debug\TryToBuildBot.pdb
+C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\bin\Debug\EntityFramework.dll
+C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\bin\Debug\EntityFramework.SqlServer.dll
+C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\bin\Debug\EntityFramework.xml
+C:\Олеся\Visual Studio\TryToBuildBot\TryToBuildBot\bin\Debug\EntityFramework.SqlServer.xml
