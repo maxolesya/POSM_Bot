@@ -43,12 +43,14 @@ namespace TryToBuildBot
         }
         public override Handler ProccessMessage(Message message, Route r)
         { m = message;
-            using (Context c = new Context())
-            {
+           // using (Context c = new Context())
+            //{
                 
-                Console.WriteLine(  c.Users.Count() );
-                User user = c.Users.FirstOrDefault(u => u.Login == h.m.Text);
-                if (user == null || string.IsNullOrEmpty(message.Text) || getMd5Hash( message.Text) != user.Password)
+               
+                //User user = c.Users.FirstOrDefault(u => u.Login == h.m.Text);
+                if (h.m.Text!="olesya" || message.Text!="12345") 
+                
+                //if (user == null || string.IsNullOrEmpty(message.Text) || getMd5Hash( message.Text) != user.Password)
                 {
                     return new HandlerLogin();
                 }
@@ -57,7 +59,7 @@ namespace TryToBuildBot
                     flag = true;
                     return new HandlerRoute();
                 }
-            }
+            //}
         }
         public HandlerPassword(HandlerLogin hl)
         {

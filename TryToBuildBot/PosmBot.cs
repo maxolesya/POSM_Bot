@@ -19,7 +19,13 @@ namespace TryToBuildBot
         public event Action<string> LogMessage;
         private readonly string _token = "349066899:AAFiqkKRiwbO8Rgc1bLdANgLqWpbiJvfK3U";
         private const string _baseUrl = "https://api.telegram.org/bot";
+        Dictionary<long, Update> updateDictionary ;
+
         private long _offset = 0;
+        public PosmBot()
+        {
+            updateDictionary = new Dictionary<long, Update>();
+        }
         public async void testApiAsync()
         {
             Bot = new Telegram.Bot.TelegramBotClient("349066899:AAFiqkKRiwbO8Rgc1bLdANgLqWpbiJvfK3U");
@@ -32,11 +38,25 @@ namespace TryToBuildBot
                     var updates = await GetUpdatesAsync();
                     foreach (var update in updates)
                     {
-                        if (update.Message.Text != null && update.Message.Text != String.Empty)
-                            OnMessageReceived?.Invoke(update.Message);
+                        if (updateDictionary.ContainsKey(update.Message.Chat.Id))
+                        {
+                            updateDictionary[update.Message.Chat.Id] = update;
+                        }
+                        else
+                        {
+                            updateDictionary.Add(update.Message.Chat.Id, update);
+                        }
+                       
                         
                         _offset = update.Id + 1;
                     }
+                    foreach (var key in updateDictionary)
+                    {
+                        if (key.Value.Message.Text != null && key.Value.Message.Text != String.Empty)
+                            Console.WriteLine(updates.Length);
+                            OnMessageReceived?.Invoke(key.Value.Message);
+                    }
+                    updateDictionary = new Dictionary<long, Update>();
                 }
                 catch (Exception)
                 {

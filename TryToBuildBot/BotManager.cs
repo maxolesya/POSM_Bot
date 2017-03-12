@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace TryToBuildBot
         Handler handler;
         Dictionary<long, ChatInfo> chatDictionary;
         public BotManager(PosmBot _client)
-        {// b = new BitmapImage(new Uri("pause.png", UriKind.Relative));    
+        {   
 
             chatDictionary = new Dictionary<long, ChatInfo>();
             Middle C2PosmAndPlacement = new Middle(null, null, "C ' 2 POSM & Placement");
@@ -88,9 +89,13 @@ namespace TryToBuildBot
         }
         public async void ProcessMessage(Message message)
         {
-
-            if (chatDictionary.ContainsKey(message.Chat.Id))
+            StreamWriter s = new StreamWriter("message.txt",true);
+            s.WriteLine(message.Text);
+            s.Close();
+            if (chatDictionary.ContainsKey(message.Chat.Id) && !message.Text.Contains("start"))
             {
+                Console.WriteLine("fsfdf");
+                Console.WriteLine(message.Text);
                 try
                 {
                     ChatInfo chatInfo = chatDictionary[message.Chat.Id];
@@ -106,8 +111,25 @@ namespace TryToBuildBot
                     Console.WriteLine(e.Message);
                 }
             }
-            else
+            else if ( message.Text.Contains("start"))
             {
+                Console.WriteLine("Здесь");
+                handler = new HandlerLogin();
+                if (!chatDictionary.ContainsKey(message.Chat.Id))
+                {
+                    chatDictionary.Add(message.Chat.Id, new ChatInfo() { ChatId = message.Chat.Id, CurrentNode = r, Login = false, Password = false });
+                }
+                await client.Bot.SendTextMessageAsync(message.Chat.Id, BotAnswers.InfoMessage(), false, false, 0);
+                await client.Bot.SendTextMessageAsync(message.Chat.Id, "Введите логин", false, false, 0);
+            }
+            else if (Equals(message.Text, "/stop"))
+            {
+                Console.WriteLine("stop");
+                chatDictionary.Remove(message.Chat.Id);
+            }
+            else if (!chatDictionary.ContainsKey(message.Chat.Id))    
+            {
+                Console.WriteLine("И тут");
                 handler = new HandlerLogin();
                 chatDictionary.Add(message.Chat.Id, new ChatInfo() { ChatId = message.Chat.Id, CurrentNode = r, Login = false, Password = false });
                 await client.Bot.SendTextMessageAsync(message.Chat.Id, BotAnswers.InfoMessage(), false, false, 0);
